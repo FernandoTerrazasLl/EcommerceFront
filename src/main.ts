@@ -1,6 +1,10 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { App } from './app/app';
+import './style.css';
+import './widgets/header/Header';
+import './features/search-bar/SearchBar';
+import './widgets/product-list/ProductList';
 
-bootstrapApplication(App, appConfig)
-  .catch((err) => console.error(err));
+import { initRouter } from './app/router';
+
+const appRoot = document.querySelector<HTMLDivElement>('#app')!;
+
+initRouter(appRoot);

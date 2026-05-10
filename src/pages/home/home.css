@@ -1,0 +1,33 @@
+.home__main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem 1.5rem;
+}
+
+.home__header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.home__title {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: 2.2rem;
+  color: var(--color-text-main);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+
+.home__subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.home__loading {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  padding: 4rem 0;
+}

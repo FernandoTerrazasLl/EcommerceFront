@@ -1,0 +1,226 @@
+.cart__main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem 1.5rem;
+}
+
+.cart__back {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  margin-bottom: 3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.cart__back:hover {
+  color: var(--color-text-main);
+}
+
+.cart__title {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: 2.2rem;
+  color: var(--color-text-main);
+  margin-bottom: 3rem;
+}
+
+.cart__content {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+@media (max-width: 868px) {
+  .cart__content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.cart__items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cart__empty {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.cart__summary {
+  background-color: var(--color-bg-secondary);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+}
+
+.cart__summary-title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-main);
+}
+
+.cart__summary-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.cart__total {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--color-text-main);
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart__checkout {
+  width: 100%;
+  padding: 1rem;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 400;
+  color: #ffffff;
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.cart__checkout:hover:not(:disabled) {
+  background-color: var(--color-accent-hover);
+}
+
+.cart__checkout:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.cart__checkout:disabled {
+  background-color: var(--color-border);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+/* Individual Cart Item */
+.cart-item {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cart-item:first-child {
+  padding-top: 0;
+}
+
+.cart-item__image {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  background-color: var(--color-bg-input);
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.cart-item__details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item__title {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1.05rem;
+  color: var(--color-text-main);
+  margin-bottom: 0.25rem;
+}
+
+.cart-item__price {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+
+.cart-item__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.cart-item__quantity-controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: 50px;
+  overflow: hidden;
+  height: 32px;
+}
+
+.cart-item__btn {
+  background: none;
+  border: none;
+  color: var(--color-text-main);
+  width: 32px;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: background-color 0.2s ease;
+}
+
+.cart-item__btn:hover {
+  background-color: var(--color-bg-input);
+}
+
+.cart-item__quantity {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  min-width: 24px;
+  text-align: center;
+}
+
+.cart-item__btn--remove {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-left: auto;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: color 0.2s ease;
+}
+
+.cart-item__btn--remove:hover {
+  color: #dc3545; /* soft warning color on hover */
+}
