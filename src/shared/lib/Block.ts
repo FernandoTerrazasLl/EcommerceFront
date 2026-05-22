@@ -1,9 +1,5 @@
 export abstract class Block extends HTMLElement {
-  constructor() {
-    super();
-  }
-
-  connectedCallback() {
+connectedCallback() {
     this.render();
     this.initialize();
   }

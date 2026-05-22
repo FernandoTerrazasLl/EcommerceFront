@@ -64,15 +64,17 @@ export class ProductDetailPage extends Block {
     if (desc) desc.textContent = this.product.description;
   }
 
+  private static readonly MESSAGE_DURATION_MS = 2000;
+
   private bindEvents() {
     const backBtn = this.querySelector('.product-detail__back');
     if (backBtn) {
       backBtn.addEventListener('click', () => this.goHome());
     }
 
-    const addBtn = this.querySelector('.product-detail__add');
-    if (addBtn) {
-      addBtn.addEventListener('click', () => {
+    const addToCartButton = this.querySelector('.product-detail__add');
+    if (addToCartButton) {
+      addToCartButton.addEventListener('click', () => {
         if (this.product) {
           cartStore.addToCart(this.product);
           this.showAddedMessage();
@@ -82,12 +84,12 @@ export class ProductDetailPage extends Block {
   }
 
   private showAddedMessage() {
-    const msg = this.querySelector('.product-detail__message') as HTMLElement;
-    if (msg) {
-      msg.style.display = 'block';
+    const messageElement = this.querySelector('.product-detail__message') as HTMLElement;
+    if (messageElement) {
+      messageElement.style.display = 'block';
       setTimeout(() => {
-        msg.style.display = 'none';
-      }, 2000);
+        messageElement.style.display = 'none';
+      }, ProductDetailPage.MESSAGE_DURATION_MS);
     }
   }
 
