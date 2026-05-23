@@ -12,7 +12,7 @@ const routes = [
 ];
 
 export function initRouter(rootElement: HTMLElement) {
-  function render(location: any) {
+  function render(location: { pathname: string }) {
     const path = location.pathname;
     let matchedComponent = 'home-page';
 

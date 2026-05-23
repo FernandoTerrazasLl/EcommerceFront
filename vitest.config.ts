@@ -5,9 +5,20 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     coverage: {
-      provider: 'v8',
-      include: ['src/entities/**'],
-      reporter: ['text', 'html']
+      provider: 'istanbul',
+      reporter: ['text', 'html'],
+      reportsDirectory: './coverage',
+      all: true,
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: [
+        'node_modules/',
+        'dist/',
+        'vite.config.ts',
+        'vitest.config.ts',
+        '**/*.d.ts',
+        '**/*.test.{ts,tsx}',
+        'src/__tests__/**'
+      ]
     }
   }
 });

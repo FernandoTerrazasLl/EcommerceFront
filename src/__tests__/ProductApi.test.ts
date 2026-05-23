@@ -42,7 +42,6 @@ describe('ProductApi Unit Tests', () => {
     const mockSelect = vi.fn().mockReturnValue({ ilike: mockIlike });
     const mockFrom = vi.fn().mockReturnValue({ select: mockSelect });
 
-    // Re-mock supabase structure for this specific test
     supabase.from = mockFrom;
 
     const results = await ProductApi.searchProducts('Camiseta');
