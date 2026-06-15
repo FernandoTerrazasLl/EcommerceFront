@@ -37,19 +37,16 @@ describe('CartStore Unit Tests', () => {
     expect(cartStore.getItems()[0].quantity).toBe(2);
   });
 
-  it("removeFromCart_clickButtonEraseProductA_eraseItemCompletely", () => {
+  it("removeFromCart_clickButtonEraseProductA_eraseItem", () => {
     // HU-04 - Criterio 2 (CASO INVÁLIDO): Dado el cliente se equivoco de articulo, 
     // cuando el cliente apreta el boton de eliminar en el producto requerido, 
     // entonces el sistema debe eliminar todo el contenido de ese producto.
 
-    // Arrange
     cartStore.addToCart(mockProductA);
     cartStore.addToCart(mockProductB);
 
-    // Act
     cartStore.removeFromCart(mockProductA.id);
 
-    // Assert
     expect(cartStore.getTotalItems()).toBe(1);
     expect(cartStore.getTotalPrice()).toBe(50);
     expect(cartStore.getItems().length).toBe(1);
