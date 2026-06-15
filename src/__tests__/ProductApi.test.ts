@@ -50,4 +50,12 @@ describe('ProductApi Unit Tests', () => {
     expect(mockOrder).toHaveBeenCalledWith('id', { ascending: true });
     expect(results).toEqual([mockProducts[0]]);
   });
+  it('ProductApi_searchProductsNotFound_returnEmptyProductList', async () => {
+    // HU-02 - Criterio 2: 
+    // (CASO INVÁLIDO) DADO que el cliente realiza una búsqueda con un término que no corresponde a ningún 
+    // producto del catálogo, CUANDO el sistema finaliza el proceso de filtrado sin hallar coincidencias, 
+    // ENTONCES debe mostrar en pantalla el mensaje textual "No se encontraron productos".
+
+    // TO DO
+  });
 });
