@@ -65,6 +65,10 @@ describe('ProductApi Unit Tests', () => {
 
     const results = await ProductApi.searchProducts('NameThatDoesNotExist');
 
+    expect(mockFrom).toHaveBeenCalledWith('products');
+    expect(mockSelect).toHaveBeenCalledWith('*');
+    expect(mockIlike).toHaveBeenCalledWith('name', '%NameThatDoesNotExist%');
+    expect(mockOrder).toHaveBeenCalledWith('id', { ascending: true });
     expect(results).toEqual([]);
   });
 });
