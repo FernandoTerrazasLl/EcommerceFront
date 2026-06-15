@@ -34,7 +34,15 @@ describe('ProductApi Unit Tests', () => {
     // cuando el sistema carga los productos, entonces debe mostrar una lista de 
     // artículos con una imagen, nombre y precio actual.
 
-    // TODO
+    const mockOrder = vi.fn().mockResolvedValue({ data: mockProducts, error: null });
+    const mockSelect = vi.fn().mockReturnValue({ order: mockOrder });
+    const mockFrom = vi.fn().mockReturnValue({ select: mockSelect });
+    
+    supabase.from = mockFrom;
+
+    const results = await ProductApi.getAllProducts();
+    
+    expect(results).toEqual(mockProducts);
   });
   it('searchProducts_findAnExistingProduct_returnProduct', async () => {
     // HU-02 - Criterio 1: Búsqueda válida con coincidencias
