@@ -42,6 +42,9 @@ describe('ProductApi Unit Tests', () => {
 
     const results = await ProductApi.getAllProducts();
     
+    expect(mockFrom).toHaveBeenCalledWith('products');
+    expect(mockSelect).toHaveBeenCalledWith('*');
+    expect(mockOrder).toHaveBeenCalledWith('id', { ascending: true });
     expect(results).toEqual(mockProducts);
   });
   it('searchProducts_findAnExistingProduct_returnProduct', async () => {
