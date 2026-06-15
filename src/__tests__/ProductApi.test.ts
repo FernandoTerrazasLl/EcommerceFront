@@ -124,4 +124,67 @@ describe('ProductApi Unit Tests', () => {
     expect(mockOrder).toHaveBeenCalledWith('id', { ascending: true });
     expect(results).toEqual([]);
   });
+
+  it('searchProducts_emptyNameProduct_returnEmptyProductList', async () => {
+    // HU-02 - Criterio 2: 
+    // (CASO INVÁLIDO) DADO que el cliente realiza una búsqueda con un término que no corresponde a ningún 
+    // producto del catálogo, CUANDO el sistema finaliza el proceso de filtrado sin hallar coincidencias, 
+    // ENTONCES debe mostrar en pantalla el mensaje textual "No se encontraron productos".
+
+    const mockOrder = vi.fn().mockResolvedValue({ data: mockProducts, error: null });
+    const mockSelect = vi.fn().mockReturnValue({ order: mockOrder });
+    const mockFrom = vi.fn().mockReturnValue({ select: mockSelect });
+    
+    supabase.from = mockFrom;
+    
+    const results = await ProductApi.searchProducts('');
+    
+    expect(mockFrom).toHaveBeenCalledWith('products');
+    expect(mockSelect).toHaveBeenCalledWith('*');
+    expect(mockOrder).toHaveBeenCalledWith('id', { ascending: true });
+    expect(results).toEqual(mockProducts);
+  });
+
+    it('searchProducts_callFunctionWithError_throwError', async () => {
+    // HU-02 - Criterio 2: 
+    // (CASO INVÁLIDO) DADO que el cliente realiza una búsqueda con un término que no corresponde a ningún 
+    // producto del catálogo, CUANDO el sistema finaliza el proceso de filtrado sin hallar coincidencias, 
+    // ENTONCES debe mostrar en pantalla el mensaje textual "No se encontraron productos".
+
+    const mockOrder = vi.fn().mockResolvedValue({ data: null, error: { message: 'Search query error' } });
+    const mockIlike = vi.fn().mockReturnValue({ order: mockOrder });
+    const mockSelect = vi.fn().mockReturnValue({ ilike: mockIlike });
+    const mockFrom = vi.fn().mockReturnValue({ select: mockSelect });
+
+    supabase.from = mockFrom;
+
+    await expect(ProductApi.searchProducts('Camiseta')).rejects.toThrow('Search query error');
+    expect(mockFrom).toHaveBeenCalledWith('products');
+    expect(mockSelect).toHaveBeenCalledWith('*');
+    expect(mockIlike).toHaveBeenCalledWith('name', '%Camiseta%');
+    expect(mockOrder).toHaveBeenCalledWith('id', { ascending: true });
+  });
+
+  it('searchProducts_dataIsNull_returnEmptyArray', async () => {
+    // HU-02 - Criterio 2: 
+    // (CASO INVÁLIDO) DADO que el cliente realiza una búsqueda con un término que no corresponde a ningún 
+    // producto del catálogo, CUANDO el sistema finaliza el proceso de filtrado sin hallar coincidencias, 
+    // ENTONCES debe mostrar en pantalla el mensaje textual "No se encontraron productos".
+
+    const mockOrder = vi.fn().mockResolvedValue({ data: null, error: null });
+    const mockIlike = vi.fn().mockReturnValue({ order: mockOrder });
+    const mockSelect = vi.fn().mockReturnValue({ ilike: mockIlike });
+    const mockFrom = vi.fn().mockReturnValue({ select: mockSelect });
+
+    supabase.from = mockFrom;
+
+    const results = await ProductApi.searchProducts('Camiseta');
+
+    expect(mockFrom).toHaveBeenCalledWith('products');
+    expect(mockSelect).toHaveBeenCalledWith('*');
+    expect(mockIlike).toHaveBeenCalledWith('name', '%Camiseta%');
+    expect(mockOrder).toHaveBeenCalledWith('id', { ascending: true });
+    expect(results).toEqual([]);
+  });
 });
+
