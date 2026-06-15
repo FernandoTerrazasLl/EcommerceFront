@@ -186,5 +186,34 @@ describe('ProductApi Unit Tests', () => {
     expect(mockOrder).toHaveBeenCalledWith('id', { ascending: true });
     expect(results).toEqual([]);
   });
+  it('getProductById_findAnExistingProduct_returnProductDetail', async () => {
+    // HU-03 - Criterio 1 (CASO VÁLIDO): Dado que el cliente visualiza el listado de productos, 
+    // cuando hace clic en la imagen de un artículo, entonces el sistema debe mostrar su detalle 
+    // incluyendo nombre, precio, categoría, imagen y una descripción breve.
+
+    const mockProductWithCategory: any = {
+      id: 1,
+      name: 'Camiseta de Algodón',
+      description: 'Cómoda',
+      price: 20,
+      image: 'camiseta.jpg',
+      category: 'Ropa'
+    };
+
+    const mockSingle = vi.fn().mockResolvedValue({ data: mockProductWithCategory, error: null });
+    const mockEq = vi.fn().mockReturnValue({ single: mockSingle });
+    const mockSelect = vi.fn().mockReturnValue({ eq: mockEq });
+    const mockFrom = vi.fn().mockReturnValue({ select: mockSelect });
+
+    supabase.from = mockFrom;
+
+    const result = await ProductApi.getProductById(1);
+
+    expect(mockFrom).toHaveBeenCalledWith('products');
+    expect(mockSelect).toHaveBeenCalledWith('*');
+    expect(mockEq).toHaveBeenCalledWith('id', 1);
+    expect(mockSingle).toHaveBeenCalled();
+    expect(result).toEqual(mockProductWithCategory);
+  });
 });
 
