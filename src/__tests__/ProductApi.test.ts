@@ -29,7 +29,14 @@ describe('ProductApi Unit Tests', () => {
     vi.restoreAllMocks();
   });
 
-  it('ProductApi_searchProducts_retornaProductosCoincidentes', async () => {
+  it('getAllProducts_returnListOfProducts', async () => {
+    // HU-01 - Criterio 1: Dado que el cliente entra a la página principal de la web, 
+    // cuando el sistema carga los productos, entonces debe mostrar una lista de 
+    // artículos con una imagen, nombre y precio actual.
+
+    // TODO
+  });
+  it('searchProducts_findAnExistingProduct_returnProduct', async () => {
     // HU-02 - Criterio 1: Búsqueda válida con coincidencias
     // Dado que el cliente ingresa un término de búsqueda en la barra de búsqueda,
     // cuando hay productos cuyo nombre coincide con el término,
@@ -50,7 +57,7 @@ describe('ProductApi Unit Tests', () => {
     expect(mockOrder).toHaveBeenCalledWith('id', { ascending: true });
     expect(results).toEqual([mockProducts[0]]);
   });
-  it('ProductApi_searchProductsNotFound_returnEmptyProductList', async () => {
+  it('searchProducts_productDoesntExist_returnEmptyProductList', async () => {
     // HU-02 - Criterio 2: 
     // (CASO INVÁLIDO) DADO que el cliente realiza una búsqueda con un término que no corresponde a ningún 
     // producto del catálogo, CUANDO el sistema finaliza el proceso de filtrado sin hallar coincidencias, 

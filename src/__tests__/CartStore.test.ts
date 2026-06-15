@@ -23,7 +23,7 @@ describe('CartStore Unit Tests', () => {
     cartStore.clearCart();
   });
 
-  it('CartStore_addToCart_incrementaCantidadYPrecioTotal', () => {
+  it('addToCart_add2Items_incrementaCantidadYPrecioTotal', () => {
     // HU-04 - Criterio 1 (CASO VÁLIDO): Dado que el cliente visualiza un artículo en el carrito, 
     // cuando interactúa con los controles para aumentar o disminuir la cantidad del producto, 
     // entonces el sistema debe actualizar el número de unidades mostradas y recalcular el costo total en tiempo real.
@@ -39,7 +39,7 @@ describe('CartStore Unit Tests', () => {
     expect(cartStore.getItems()[0].quantity).toBe(2);
   });
 
-  it('CartStore_removeFromCart_eliminaItemPorCompleto', () => {
+  it("removeFromCart_clickButtonEraseProductA_eraseItemCompletely", () => {
     // HU-04 - Criterio 2 (CASO INVÁLIDO): Dado el cliente se equivoco de articulo, 
     // cuando el cliente apreta el boton de eliminar en el producto requerido, 
     // entonces el sistema debe eliminar todo el contenido de ese producto.
@@ -58,7 +58,7 @@ describe('CartStore Unit Tests', () => {
     expect(cartStore.getItems()[0].product.id).toBe(mockProductB.id);
   });
 
-  it('CartStore_updateQuantityZero_eliminaItemAutomaticamente', () => {
+  it('updateQuantity_updateQuantityToZero_eliminateItem', () => {
     // HU-04 - Criterio 3 (CASO LÍMITE): Dado que el cliente tiene un solo artículo en el carrito de compras, 
     // cuando presiona el botón de disminuir cantidad para que llegue a 0, 
     // entonces el sistema debe eliminar automáticamente el ítem de la lista.
@@ -76,7 +76,7 @@ describe('CartStore Unit Tests', () => {
     expect(cartStore.getItems().length).toBe(0);
   });
 
-  it('CartStore_dontfinditem_dontHaveError', () => {
+  it('updateQuantity_dontFindItem_dontHaveError', () => {
     // HU-04 - Criterio 3 (CASO LÍMITE): Dado que el cliente tiene un solo artículo en el carrito de compras, 
     // cuando presiona el botón de disminuir cantidad para que llegue a 0, 
     // entonces el sistema debe eliminar automáticamente el ítem de la lista.
