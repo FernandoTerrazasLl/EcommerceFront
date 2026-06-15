@@ -58,14 +58,11 @@ describe('CartStore Unit Tests', () => {
     // cuando presiona el botón de disminuir cantidad para que llegue a 0, 
     // entonces el sistema debe eliminar automáticamente el ítem de la lista.
 
-    // Arrange
     cartStore.addToCart(mockProductA);
 
-    // Act
     cartStore.updateQuantity(mockProductA.id, 1);
     cartStore.updateQuantity(mockProductA.id, 0);
 
-    // Assert
     expect(cartStore.getTotalItems()).toBe(0);
     expect(cartStore.getTotalPrice()).toBe(0);
     expect(cartStore.getItems().length).toBe(0);
@@ -76,10 +73,8 @@ describe('CartStore Unit Tests', () => {
     // cuando presiona el botón de disminuir cantidad para que llegue a 0, 
     // entonces el sistema debe eliminar automáticamente el ítem de la lista.
 
-    // Act
     cartStore.updateQuantity(999, 1);
 
-    // Assert
     expect(cartStore.getTotalItems()).toBe(0);
     expect(cartStore.getItems().length).toBe(0);
   });
