@@ -1,4 +1,4 @@
-export abstract class Block extends HTMLElement {
+ export abstract class Block extends HTMLElement {
 connectedCallback() {
     this.render();
     this.initialize();
@@ -14,5 +14,7 @@ connectedCallback() {
     `;
   }
 
-  initialize() { }
+  initialize() { 
+    // metodo para que las demas funciones pueden usar
+  }
 }
