@@ -29,7 +29,8 @@ describe('ProductApi Unit Tests', () => {
     vi.restoreAllMocks();
   });
 
-  it('getAllProducts_callFunctionCorrectly_returnListOfProducts', async () => {
+
+  it('getAllProducts_callFunctionCorrectly_returnListOfProducts', async () => {//primer HU
     // HU-01 - Criterio 1: Dado que el cliente entra a la página principal de la web, 
     // cuando el sistema carga los productos, entonces debe mostrar una lista de 
     // artículos con una imagen, nombre y precio actual.
