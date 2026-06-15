@@ -23,16 +23,14 @@ describe('CartStore Unit Tests', () => {
     cartStore.clearCart();
   });
 
-  it('addToCart_add2Items_incrementaCantidadYPrecioTotal', () => {
+  it('addToCart_add2Items_increaseQuantityAndLength', () => {
     // HU-04 - Criterio 1 (CASO VÁLIDO): Dado que el cliente visualiza un artículo en el carrito, 
     // cuando interactúa con los controles para aumentar o disminuir la cantidad del producto, 
     // entonces el sistema debe actualizar el número de unidades mostradas y recalcular el costo total en tiempo real.
 
-    // Act
     cartStore.addToCart(mockProductA);
-    cartStore.addToCart(mockProductA); // Aumentar cantidad a 2
+    cartStore.addToCart(mockProductA);
 
-    // Assert
     expect(cartStore.getTotalItems()).toBe(2);
     expect(cartStore.getTotalPrice()).toBe(200);
     expect(cartStore.getItems().length).toBe(1);
