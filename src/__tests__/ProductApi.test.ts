@@ -29,7 +29,7 @@ describe('ProductApi Unit Tests', () => {
     vi.restoreAllMocks();
   });
 
-  it('getAllProducts_returnListOfProducts', async () => {
+  it('getAllProducts_callFunctionCorrectly_returnListOfProducts', async () => {
     // HU-01 - Criterio 1: Dado que el cliente entra a la página principal de la web, 
     // cuando el sistema carga los productos, entonces debe mostrar una lista de 
     // artículos con una imagen, nombre y precio actual.
@@ -47,6 +47,13 @@ describe('ProductApi Unit Tests', () => {
     expect(mockOrder).toHaveBeenCalledWith('id', { ascending: true });
     expect(results).toEqual(mockProducts);
   });
+
+  it('getAllProducts_callFunctionWithError_throwError', async () => {
+    // HU-01 - Criterio 2: (CASO INVÁLIDO) Dado que el sistema falla al cargar la base de datos, 
+    // cuando el cliente ingresa a la página principal, entonces el sistema no debe mostrar ningun producto.
+
+  });
+  
   it('searchProducts_findAnExistingProduct_returnProduct', async () => {
     // HU-02 - Criterio 1: Búsqueda válida con coincidencias
     // Dado que el cliente ingresa un término de búsqueda en la barra de búsqueda,
