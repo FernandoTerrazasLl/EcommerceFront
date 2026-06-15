@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ProductApi } from '../entities/product/api';
 import { supabase } from '../shared/api/supabase';
+import { Product } from '../entities/product/model';
 
 vi.mock('../shared/api/supabase', () => {
   const mockOrder = vi.fn();
@@ -190,15 +191,14 @@ describe('ProductApi Unit Tests', () => {
   it('getProductById_findAnExistingProduct_returnProductDetail', async () => {
     // HU-03 - Criterio 1 (CASO VÁLIDO): Dado que el cliente visualiza el listado de productos, 
     // cuando hace clic en la imagen de un artículo, entonces el sistema debe mostrar su detalle 
-    // incluyendo nombre, precio, categoría, imagen y una descripción breve.
+    // incluyendo nombre, precio, imagen y una descripción breve.
 
-    const mockProductWithCategory: any = {
+    const mockProductWithCategory: Product = {
       id: 1,
       name: 'Camiseta de Algodón',
       description: 'Cómoda',
       price: 20,
-      image: 'camiseta.jpg',
-      category: 'Ropa'
+      image: 'camiseta.jpg'
     };
 
     const mockSingle = vi.fn().mockResolvedValue({ data: mockProductWithCategory, error: null });
