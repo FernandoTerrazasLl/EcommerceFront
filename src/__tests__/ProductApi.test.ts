@@ -56,6 +56,15 @@ describe('ProductApi Unit Tests', () => {
     // producto del catálogo, CUANDO el sistema finaliza el proceso de filtrado sin hallar coincidencias, 
     // ENTONCES debe mostrar en pantalla el mensaje textual "No se encontraron productos".
 
-    // TO DO
+    const mockOrder = vi.fn().mockResolvedValue({ data: [], error: null });
+    const mockIlike = vi.fn().mockReturnValue({ order: mockOrder });
+    const mockSelect = vi.fn().mockReturnValue({ ilike: mockIlike });
+    const mockFrom = vi.fn().mockReturnValue({ select: mockSelect });
+
+    supabase.from = mockFrom;
+
+    const results = await ProductApi.searchProducts('NameThatDoesNotExist');
+
+    expect(results).toEqual([]);
   });
 });
