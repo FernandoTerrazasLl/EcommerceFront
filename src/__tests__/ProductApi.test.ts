@@ -59,6 +59,9 @@ describe('ProductApi Unit Tests', () => {
     supabase.from = mockFrom;
     
     await expect(ProductApi.getAllProducts()).rejects.toThrow('Database error');
+    expect(mockFrom).toHaveBeenCalledWith('products');
+    expect(mockSelect).toHaveBeenCalledWith('*');
+    expect(mockOrder).toHaveBeenCalledWith('id', { ascending: true });
   });
   
   it('searchProducts_findAnExistingProduct_returnProduct', async () => {
