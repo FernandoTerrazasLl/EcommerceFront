@@ -215,5 +215,26 @@ describe('ProductApi Unit Tests', () => {
     expect(mockSingle).toHaveBeenCalled();
     expect(result).toEqual(mockProductWithCategory);
   });
+  it('getProductById_productIsDisabledOrNotExists_returnUndefined', async () => {
+    // HU-03 - Criterio 2 (CASO INVÁLIDO): Dado que el cliente intenta ver el detalle de un producto 
+    // que acaba de ser deshabilitado por el administrador, cuando hace clic en la imagen, entonces el 
+    // sistema debe bloquear el acceso, mostrar un mensaje "El artículo ya no se encuentra disponible" 
+    // y devolverlo al menú principal.
+
+    const mockSingle = vi.fn().mockResolvedValue({ data: null, error: { message: 'Object not found' } });
+    const mockEq = vi.fn().mockReturnValue({ single: mockSingle });
+    const mockSelect = vi.fn().mockReturnValue({ eq: mockEq });
+    const mockFrom = vi.fn().mockReturnValue({ select: mockSelect });
+
+    supabase.from = mockFrom;
+
+    const result = await ProductApi.getProductById(999);
+
+    expect(mockFrom).toHaveBeenCalledWith('products');
+    expect(mockSelect).toHaveBeenCalledWith('*');
+    expect(mockEq).toHaveBeenCalledWith('id', 999);
+    expect(mockSingle).toHaveBeenCalled();
+    expect(result).toBeUndefined();
+  });
 });
 
