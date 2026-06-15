@@ -67,11 +67,25 @@ describe('CartStore Unit Tests', () => {
     cartStore.addToCart(mockProductA);
 
     // Act
-    cartStore.updateQuantity(mockProductA.id, 0); // Disminuir cantidad a 0
+    cartStore.updateQuantity(mockProductA.id, 1);
+    cartStore.updateQuantity(mockProductA.id, 0);
 
     // Assert
     expect(cartStore.getTotalItems()).toBe(0);
     expect(cartStore.getTotalPrice()).toBe(0);
+    expect(cartStore.getItems().length).toBe(0);
+  });
+
+  it('CartStore_dontfinditem_dontHaveError', () => {
+    // HU-04 - Criterio 3 (CASO LÍMITE): Dado que el cliente tiene un solo artículo en el carrito de compras, 
+    // cuando presiona el botón de disminuir cantidad para que llegue a 0, 
+    // entonces el sistema debe eliminar automáticamente el ítem de la lista.
+
+    // Act
+    cartStore.updateQuantity(999, 1);
+
+    // Assert
+    expect(cartStore.getTotalItems()).toBe(0);
     expect(cartStore.getItems().length).toBe(0);
   });
 });

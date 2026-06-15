@@ -2,14 +2,12 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ProductApi } from '../entities/product/api';
 import { supabase } from '../shared/api/supabase';
 
-// Mock supabase client
 vi.mock('../shared/api/supabase', () => {
   const mockOrder = vi.fn();
   const mockIlike = vi.fn();
   const mockSelect = vi.fn();
   const mockFrom = vi.fn();
 
-  // Setup default chaining mocks
   mockFrom.mockReturnValue({ select: mockSelect });
   mockSelect.mockReturnValue({ ilike: mockIlike, order: mockOrder });
   mockIlike.mockReturnValue({ order: mockOrder });
