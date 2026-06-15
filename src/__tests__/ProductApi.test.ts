@@ -52,6 +52,13 @@ describe('ProductApi Unit Tests', () => {
     // HU-01 - Criterio 2: (CASO INVÁLIDO) Dado que el sistema falla al cargar la base de datos, 
     // cuando el cliente ingresa a la página principal, entonces el sistema no debe mostrar ningun producto.
 
+    const mockOrder = vi.fn().mockResolvedValue({ data: null, error: { message: 'Database error' } });
+    const mockSelect = vi.fn().mockReturnValue({ order: mockOrder });
+    const mockFrom = vi.fn().mockReturnValue({ select: mockSelect });
+    
+    supabase.from = mockFrom;
+    
+    await expect(ProductApi.getAllProducts()).rejects.toThrow('Database error');
   });
   
   it('searchProducts_findAnExistingProduct_returnProduct', async () => {
